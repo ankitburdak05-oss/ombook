@@ -7,11 +7,6 @@
 <title>Mind Focus Books — Wooden Bookshelf</title>
 <style>
 :root {
-  --wood-darkest: #0F0805;
-  --wood-dark: #1A0F08;
-  --wood-mid: #3A2418;
-  --wood-light: #5C3826;
-  --wood-lighter: #6B4423;
   --gold: #D4A574;
   --gold-light: #E8C896;
   --crimson: #8B3A3A;
@@ -34,6 +29,7 @@ html, body {
   user-select: none;
 }
 
+/* PHONE FRAME */
 .phone-frame {
   position: relative;
   width: 100%;
@@ -41,7 +37,7 @@ html, body {
   height: 100vh;
   max-height: 900px;
   margin: 0 auto;
-  background: linear-gradient(180deg, #2a1810 0%, #1a0f08 50%, #0a0503 100%);
+  background: #1a0f08;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -59,25 +55,12 @@ html, body {
   .phone-frame {
     border-radius: 40px;
     border: 3px solid #2a2a2a;
-    height: 85vh;
-    max-height: 800px;
+    height: 90vh;
+    max-height: 880px;
   }
 }
 
-/* Wood texture overlay */
-.phone-frame::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    repeating-linear-gradient(0deg, transparent, transparent 80px, rgba(0,0,0,0.08) 80px, rgba(0,0,0,0.08) 81px),
-    repeating-linear-gradient(90deg, transparent, transparent 200px, rgba(0,0,0,0.04) 200px, rgba(0,0,0,0.04) 201px);
-  pointer-events: none;
-  opacity: 0.6;
-  z-index: 1;
-}
-
-/* Status bar */
+/* STATUS BAR */
 .status-bar {
   height: 44px;
   display: flex;
@@ -89,6 +72,7 @@ html, body {
   flex-shrink: 0;
   position: relative;
   z-index: 10;
+  color: #fff;
 }
 
 .notch {
@@ -104,13 +88,12 @@ html, body {
 }
 
 .status-icons { display: flex; align-items: center; gap: 6px; font-size: 14px; }
-.status-icons svg { width: 16px; height: 16px; }
 
-/* Header */
+/* HEADER */
 .app-header {
   display: flex;
   align-items: center;
-  padding: 8px 20px 12px;
+  padding: 8px 20px 16px;
   gap: 12px;
   flex-shrink: 0;
   position: relative;
@@ -120,7 +103,7 @@ html, body {
 .logo {
   width: 36px;
   height: 36px;
-  background: linear-gradient(135deg, var(--wood-light), var(--wood-lighter));
+  background: linear-gradient(135deg, #5C3826, #6B4423);
   border-radius: 8px;
   border: 1.5px solid var(--gold);
   display: flex;
@@ -131,14 +114,13 @@ html, body {
 
 .logo svg { width: 20px; height: 20px; fill: var(--gold); }
 
-.app-title {
-  flex: 1;
-}
+.app-title { flex: 1; }
 .app-title h1 {
   font-size: 18px;
   font-weight: 800;
   letter-spacing: -0.3px;
   line-height: 1.1;
+  color: #fff;
 }
 .app-title p {
   font-size: 14px;
@@ -150,24 +132,23 @@ html, body {
 .icon-btn {
   width: 38px;
   height: 38px;
-  background: rgba(58, 36, 24, 0.6);
+  background: rgba(58, 36, 24, 0.7);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background 0.2s;
   border: none;
-  color: var(--text-primary);
+  color: #fff;
+  backdrop-filter: blur(10px);
 }
-.icon-btn:active { background: rgba(58, 36, 24, 0.9); }
 .icon-btn svg { width: 20px; height: 20px; fill: currentColor; }
 
-/* Filter chips */
+/* FILTER CHIPS */
 .filter-row {
   display: flex;
   gap: 10px;
-  padding: 8px 20px 16px;
+  padding: 4px 20px 16px;
   flex-shrink: 0;
   position: relative;
   z-index: 5;
@@ -179,24 +160,25 @@ html, body {
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s;
   border: none;
+  font-family: inherit;
 }
 .chip.active {
   background: var(--text-primary);
-  color: var(--wood-dark);
+  color: #1a0f08;
 }
 .chip:not(.active) {
-  background: rgba(58, 36, 24, 0.5);
+  background: rgba(58, 36, 24, 0.6);
   color: var(--text-secondary);
+  backdrop-filter: blur(10px);
 }
 
-/* Scrollable content */
+/* SCROLL AREA */
 .scroll-area {
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 0 16px 100px;
+  padding: 0 8px 100px;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   position: relative;
@@ -204,102 +186,82 @@ html, body {
 }
 
 .scroll-area::-webkit-scrollbar { width: 4px; }
-.scroll-area::-webkit-scrollbar-track { background: transparent; }
-.scroll-area::-webkit-scrollbar-thumb { background: var(--wood-light); border-radius: 2px; }
+.scroll-area::-webkit-scrollbar-thumb { background: var(--text-muted); border-radius: 2px; }
 
 .section-title {
   font-size: 20px;
   font-weight: 800;
   letter-spacing: -0.3px;
-  color: var(--text-primary);
-  margin: 16px 4px 12px;
+  color: #fff;
+  margin: 16px 12px 12px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
 }
 
-/* Featured books row */
+/* FEATURED BOOKS (Currently Reading) */
 .featured-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
-  background: rgba(58, 36, 24, 0.4);
-  padding: 16px;
-  border-radius: 16px;
-  border: 2px solid var(--wood-lighter);
-  margin-bottom: 24px;
-  position: relative;
+  padding: 0 8px;
+  margin-bottom: 8px;
 }
 
 .featured-book {
-  display: flex;
-  flex-direction: column;
   cursor: pointer;
-}
-
-.book-spine {
-  width: 100%;
-  height: 130px;
-  border-radius: 4px;
   position: relative;
-  box-shadow:
-    inset 0 0 20px rgba(0,0,0,0.3),
-    2px 4px 12px rgba(0,0,0,0.5);
+}
+
+.featured-cover {
+  width: 100%;
+  aspect-ratio: 0.7;
+  border-radius: 4px;
   overflow: hidden;
+  background: #1a0f08;
+  box-shadow:
+    inset 0 0 30px rgba(0,0,0,0.4),
+    4px 8px 20px rgba(0,0,0,0.7);
+  position: relative;
 }
 
-.book-spine::before,
-.book-spine::after {
-  content: '';
-  position: absolute;
-  left: 8px;
-  right: 8px;
-  height: 1px;
-  background: rgba(255,255,255,0.18);
-}
-.book-spine::before { top: 8px; }
-.book-spine::after { bottom: 8px; }
-
-.book-title-vertical {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(-90deg);
-  white-space: nowrap;
-  color: rgba(255,255,255,0.85);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
+.featured-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .featured-info {
   margin-top: 10px;
+  padding: 0 4px;
 }
 
 .featured-info h3 {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 800;
-  color: var(--text-primary);
+  color: var(--gold-light);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.8px;
   line-height: 1.2;
   margin-bottom: 8px;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.8);
 }
 
-/* Status pills */
+/* STATUS PILLS */
 .status-pill {
   display: inline-block;
   padding: 6px 14px;
   border-radius: 20px;
   font-size: 11px;
   font-weight: 800;
-  letter-spacing: 1px;
+  letter-spacing: 1.2px;
   text-transform: uppercase;
   border: 1.5px solid;
 }
-.status-pill.reading { background: rgba(139, 58, 58, 0.2); color: var(--crimson-light); border-color: var(--crimson); }
-.status-pill.completed { background: rgba(45, 90, 61, 0.2); color: var(--forest-light); border-color: var(--forest); }
-.status-pill.lent { background: rgba(212, 165, 116, 0.2); color: var(--gold-light); border-color: var(--gold); }
+.status-pill.reading { background: rgba(139, 58, 58, 0.85); color: #fff; border-color: #c25555; }
+.status-pill.completed { background: rgba(45, 90, 61, 0.85); color: #fff; border-color: #4a8a5e; }
+.status-pill.lent { background: rgba(196, 165, 123, 0.85); color: #1a0f08; border-color: var(--gold); }
 
-/* "New" badge */
+/* NEW BADGE */
 .new-badge {
   position: absolute;
   top: 12px;
@@ -312,80 +274,73 @@ html, body {
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(79, 195, 247, 0.5);
   letter-spacing: 0.3px;
+  z-index: 5;
 }
 
-/* Bookshelf row */
+/* BOOKSHELF ROW */
 .shelf {
+  background: linear-gradient(180deg,
+    transparent 0%,
+    transparent 75%,
+    rgba(0,0,0,0.4) 75%,
+    rgba(0,0,0,0.6) 78%,
+    #4A2818 78%,
+    #3A2010 85%,
+    rgba(0,0,0,0.8) 100%);
+  padding: 4px 8px 24px;
+  margin: 0 8px 24px;
+  border-radius: 4px;
   position: relative;
-  background: linear-gradient(180deg, transparent 0%, transparent 88%, var(--wood-lighter) 88%, var(--wood-lighter) 92%, rgba(0,0,0,0.4) 92%, rgba(0,0,0,0.4) 100%);
-  padding: 8px 4px 14px;
-  margin-bottom: 24px;
-  border-radius: 0 0 4px 4px;
 }
 
 .shelf-row {
   display: flex;
-  gap: 6px;
+  gap: 4px;
   align-items: flex-end;
-  min-height: 140px;
+  min-height: 200px;
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 4px 4px 6px;
+  padding: 0 4px 8px;
   scrollbar-width: thin;
 }
-.shelf-row::-webkit-scrollbar { height: 4px; }
-.shelf-row::-webkit-scrollbar-thumb { background: var(--wood-light); border-radius: 2px; }
+.shelf-row::-webkit-scrollbar { height: 3px; }
+.shelf-row::-webkit-scrollbar-thumb { background: var(--text-muted); border-radius: 2px; }
 
 .shelf-book {
   flex-shrink: 0;
-  width: 36px;
+  width: 50px;
   border-radius: 2px 2px 0 0;
   position: relative;
   cursor: pointer;
+  overflow: hidden;
+  background: #1a0f08;
   box-shadow:
-    inset 0 0 8px rgba(0,0,0,0.4),
-    1px 2px 4px rgba(0,0,0,0.5);
+    inset 0 0 8px rgba(0,0,0,0.5),
+    1px 2px 6px rgba(0,0,0,0.7);
   transition: transform 0.2s;
 }
-.shelf-book:active { transform: translateY(-2px); }
+.shelf-book:active { transform: translateY(-3px); }
 
-.shelf-book::before,
-.shelf-book::after {
-  content: '';
-  position: absolute;
-  left: 4px;
-  right: 4px;
-  height: 1px;
-  background: rgba(255,255,255,0.15);
-}
-.shelf-book::before { top: 6px; }
-.shelf-book::after { bottom: 6px; }
-
-.book-label {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(-90deg);
-  white-space: nowrap;
-  color: rgba(255,255,255,0.75);
-  font-size: 8px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+.shelf-book img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
-/* Bottom navigation */
+/* BOTTOM NAV */
 .bottom-nav {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   height: 76px;
-  background: var(--wood-mid);
-  border-top: 2px solid var(--wood-lighter);
+  background: rgba(28, 20, 16, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255,255,255,0.1);
   display: flex;
   padding: 8px 8px 12px;
-  box-shadow: 0 -4px 20px rgba(0,0,0,0.5);
   z-index: 50;
 }
 
@@ -400,20 +355,15 @@ html, body {
   border: none;
   background: none;
   padding: 6px 0;
-  transition: all 0.2s;
-  border-radius: 12px;
   color: var(--text-muted);
+  font-family: inherit;
 }
-.nav-item.active { color: var(--gold); }
-.nav-item:active { background: rgba(212, 165, 116, 0.1); }
+.nav-item.active { color: var(--text-primary); }
 .nav-item svg { width: 24px; height: 24px; fill: currentColor; }
-.nav-item span {
-  font-size: 11px;
-  font-weight: 600;
-}
+.nav-item span { font-size: 11px; font-weight: 600; }
 .nav-item.active span { font-weight: 700; }
 
-/* Toast */
+/* TOAST */
 .toast {
   position: fixed;
   top: 60px;
@@ -432,88 +382,95 @@ html, body {
   border: 1px solid rgba(255,255,255,0.1);
   pointer-events: none;
 }
-.toast.show {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-/* Pages */
-.page {
-  display: none;
-}
-.page.active {
-  display: block;
-  animation: fadeIn 0.3s;
-}
+/* PAGES */
+.page { display: none; }
+.page.active { display: block; animation: fadeIn 0.3s; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-/* Library grid */
+/* LIBRARY GRID */
 .lib-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  padding: 4px;
+  gap: 8px;
+  padding: 8px;
 }
 .lib-book {
-  background: linear-gradient(135deg, var(--wood-mid), var(--wood-light));
-  border-radius: 6px;
-  aspect-ratio: 0.6;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 8px;
+  border-radius: 4px;
+  aspect-ratio: 0.7;
   position: relative;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.4);
   cursor: pointer;
+  overflow: hidden;
+  background: #1a0f08;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.6);
   transition: transform 0.2s;
 }
 .lib-book:active { transform: scale(0.95); }
-.lib-book .b-title {
+.lib-book img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.lib-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 8px 6px;
+  background: linear-gradient(180deg, transparent, rgba(0,0,0,0.9));
+  text-align: center;
+}
+.lib-info .b-title {
   font-size: 10px;
   font-weight: 800;
-  text-align: center;
-  color: rgba(255,255,255,0.9);
-  line-height: 1.2;
+  color: #fff;
+  line-height: 1.1;
 }
-.lib-book .b-author {
+.lib-info .b-author {
   font-size: 9px;
-  color: rgba(255,255,255,0.6);
-  text-align: center;
+  color: var(--text-secondary);
   margin-top: 2px;
 }
 
-/* Focus page */
+/* FOCUS PAGE */
 .focus-page {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  padding: 32px 20px;
+  height: 100%;
 }
 .focus-title {
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 800;
   margin-bottom: 4px;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
 }
 .focus-subtitle {
   font-size: 14px;
   color: var(--text-secondary);
-  margin-bottom: 32px;
+  margin-bottom: 40px;
+  letter-spacing: 0.5px;
 }
 .timer-circle {
   width: 280px;
   height: 280px;
   border-radius: 50%;
-  background: var(--wood-mid);
+  background: radial-gradient(circle, rgba(58, 36, 24, 0.9), rgba(20, 12, 8, 0.95));
   border: 4px solid var(--gold);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 56px;
+  font-size: 60px;
   font-weight: 800;
   font-variant-numeric: tabular-nums;
-  box-shadow: 0 0 40px rgba(212, 165, 116, 0.3), inset 0 0 30px rgba(0,0,0,0.3);
-  margin: 32px 0;
+  box-shadow:
+    0 0 60px rgba(212, 165, 116, 0.4),
+    inset 0 0 40px rgba(0,0,0,0.5);
+  margin: 40px 0;
+  color: var(--gold-light);
 }
 .timer-controls {
   display: flex;
@@ -524,57 +481,58 @@ html, body {
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: var(--wood-light);
+  background: var(--wood-light, #5C3826);
   border: none;
-  color: var(--text-primary);
+  color: #fff;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
 }
 .circle-btn.large {
   width: 76px;
   height: 76px;
   background: var(--gold);
-  color: var(--wood-dark);
+  color: #1a0f08;
 }
-.circle-btn:active { transform: scale(0.92); }
-.circle-btn svg { width: 28px; height: 28px; fill: currentColor; }
+.circle-btn svg { width: 26px; height: 26px; fill: currentColor; }
 .circle-btn.large svg { width: 36px; height: 36px; }
 
-/* Profile */
+/* PROFILE */
 .profile-page { padding: 20px; }
-.avatar-wrap { display: flex; flex-direction: column; align-items: center; margin: 20px 0 32px; }
+.avatar-wrap { display: flex; flex-direction: column; align-items: center; margin: 24px 0 32px; }
 .avatar {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  background: var(--wood-light);
+  background: linear-gradient(135deg, #5C3826, #6B4423);
   border: 3px solid var(--gold);
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 16px;
-  box-shadow: 0 0 30px rgba(212, 165, 116, 0.3);
+  box-shadow: 0 0 30px rgba(212, 165, 116, 0.4);
 }
 .avatar svg { width: 50px; height: 50px; fill: var(--gold); }
-.profile-name { font-size: 24px; font-weight: 800; }
+.profile-name { font-size: 24px; font-weight: 800; color: #fff; }
 .profile-sub { font-size: 13px; color: var(--text-secondary); margin-top: 4px; }
 
 .stats-row {
   display: flex;
   justify-content: space-around;
   margin-bottom: 32px;
-  padding: 16px;
-  background: rgba(58, 36, 24, 0.4);
-  border-radius: 14px;
+  padding: 20px 16px;
+  background: rgba(58, 36, 24, 0.5);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.05);
 }
 .stat-item { text-align: center; }
-.stat-val { font-size: 24px; font-weight: 800; color: var(--gold); }
+.stat-val { font-size: 26px; font-weight: 800; color: var(--gold); }
 .stat-lbl { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
 
-.profile-list { display: flex; flex-direction: column; gap: 8px; }
+.profile-list { display: flex; flex-direction: column; gap: 10px; }
 .list-item {
   display: flex;
   align-items: center;
@@ -582,34 +540,37 @@ html, body {
   background: rgba(58, 36, 24, 0.5);
   border-radius: 12px;
   cursor: pointer;
-  transition: background 0.2s;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.05);
 }
-.list-item:active { background: rgba(58, 36, 24, 0.8); }
 .list-item svg { width: 22px; height: 22px; fill: var(--gold); margin-right: 14px; }
-.list-item .li-label { flex: 1; font-size: 14px; }
+.list-item .li-label { flex: 1; font-size: 14px; color: #fff; }
 .list-item .li-count { color: var(--text-secondary); font-size: 14px; }
-.list-item .li-arrow { color: var(--text-muted); margin-left: 8px; }
+.list-item .li-arrow { color: var(--text-muted); margin-left: 8px; font-size: 18px; }
 
-/* Settings */
+/* SETTINGS */
 .settings-page { padding: 20px; }
 .settings-title {
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 800;
   margin-bottom: 24px;
+  color: #fff;
 }
 .settings-group { margin-bottom: 24px; }
 .settings-group-title {
   font-size: 12px;
   font-weight: 800;
   color: var(--text-muted);
-  letter-spacing: 1.2px;
-  margin-bottom: 8px;
+  letter-spacing: 1.5px;
+  margin-bottom: 10px;
   padding-left: 4px;
 }
 .settings-card {
   background: rgba(58, 36, 24, 0.5);
   border-radius: 14px;
   overflow: hidden;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.05);
 }
 .settings-row {
   display: flex;
@@ -619,13 +580,12 @@ html, body {
 }
 .settings-row:last-child { border-bottom: none; }
 .settings-row svg { width: 22px; height: 22px; fill: var(--gold); margin-right: 14px; }
-.settings-row .sr-label { flex: 1; font-size: 14px; }
+.settings-row .sr-label { flex: 1; font-size: 14px; color: #fff; }
 
-/* Toggle switch */
 .toggle {
   width: 46px;
   height: 26px;
-  background: var(--wood-lighter);
+  background: rgba(255,255,255,0.15);
   border-radius: 13px;
   position: relative;
   cursor: pointer;
@@ -645,41 +605,45 @@ html, body {
 }
 .toggle.on::after { transform: translateX(20px); }
 
-/* Detail modal */
+/* MODAL */
 .modal-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.7);
+  background: rgba(0,0,0,0.85);
   display: none;
   align-items: center;
   justify-content: center;
   z-index: 100;
   padding: 20px;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(12px);
 }
 .modal-backdrop.show { display: flex; animation: fadeIn 0.2s; }
 .modal {
-  background: var(--wood-mid);
+  background: linear-gradient(135deg, #3A2418, #2A1810);
   border-radius: 20px;
   padding: 24px;
   width: 100%;
   max-width: 320px;
-  border: 2px solid var(--wood-lighter);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  border: 2px solid var(--gold);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.8);
 }
 .modal-cover {
-  width: 120px;
-  height: 170px;
+  width: 140px;
+  height: 200px;
   border-radius: 6px;
   margin: 0 auto 16px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+  overflow: hidden;
 }
+.modal-cover img { width: 100%; height: 100%; object-fit: cover; }
 .modal-title {
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 800;
   text-align: center;
   margin-bottom: 4px;
   letter-spacing: 0.3px;
+  color: var(--gold-light);
+  text-transform: uppercase;
 }
 .modal-author {
   text-align: center;
@@ -687,12 +651,10 @@ html, body {
   color: var(--text-secondary);
   margin-bottom: 16px;
 }
-.modal-progress {
-  margin-bottom: 16px;
-}
+.modal-progress { margin-bottom: 16px; }
 .progress-bar {
   height: 8px;
-  background: var(--wood-lighter);
+  background: rgba(255,255,255,0.1);
   border-radius: 4px;
   overflow: hidden;
   margin-bottom: 6px;
@@ -713,12 +675,13 @@ html, body {
   width: 100%;
   padding: 12px;
   background: linear-gradient(135deg, var(--gold), var(--gold-light));
-  color: var(--wood-dark);
+  color: #1a0f08;
   border: none;
   border-radius: 12px;
   font-weight: 700;
   font-size: 14px;
   cursor: pointer;
+  font-family: inherit;
 }
 </style>
 </head>
@@ -749,7 +712,7 @@ html, body {
       <button class="icon-btn" onclick="showToast('Profile opened')">
         <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
       </button>
-      <button class="icon-btn" onclick="showToast('Search feature coming soon!')">
+      <button class="icon-btn" onclick="showToast('Search coming soon!')">
         <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
       </button>
     </div>
@@ -759,37 +722,34 @@ html, body {
       <button class="chip active" onclick="setFilter('all', this)">All Books</button>
     </div>
 
-    <div class="scroll-area" id="home-scroll">
-      <!-- Currently Reading -->
+    <div class="scroll-area">
       <div class="section-title">Currently Reading</div>
       <div class="featured-row">
         <div class="featured-book" onclick="openBookDetail('alchemist-path')">
-          <div class="book-spine" style="background: linear-gradient(135deg, #6B3410, #8B4513);">
-            <div class="book-title-vertical">The Alchemist's Path</div>
+          <div class="featured-cover">
+            <img src="web/assets/b_alchemist.jpg" alt="The Alchemist's Path"/>
           </div>
           <div class="featured-info">
             <h3>The Alchemist's Path</h3>
             <span class="status-pill reading">Reading</span>
           </div>
         </div>
-        <div class="featured-book" onclick="openBookDetail('meditations')">
-          <div class="book-spine" style="background: linear-gradient(135deg, #2D1810, #4A2818);">
-            <div class="book-title-vertical">Meditations</div>
+        <div class="featured-book" onclick="openBookDetail('dune')">
+          <div class="featured-cover">
+            <img src="web/assets/b_dune.jpg" alt="Dune"/>
           </div>
           <div class="featured-info">
-            <h3>Meditations</h3>
-            <span class="status-pill reading">Reading</span>
+            <h3>Dune</h3>
+            <span class="status-pill completed">Completed</span>
           </div>
         </div>
       </div>
 
-      <!-- Recently Completed -->
       <div class="section-title">Recently Completed</div>
       <div class="shelf">
         <div class="shelf-row" id="shelf-recent"></div>
       </div>
 
-      <!-- Lent to Friends -->
       <div class="section-title">Lent to Friends</div>
       <div class="shelf">
         <div class="shelf-row" id="shelf-lent"></div>
@@ -799,10 +759,10 @@ html, body {
 
   <!-- LIBRARY PAGE -->
   <div class="page" id="page-library">
-    <div class="app-header" style="padding-bottom: 4px;">
+    <div class="app-header">
       <div class="app-title">
         <h1 style="font-size: 26px;">My Library</h1>
-        <p id="lib-count" style="font-size: 12px; margin-top: 2px;">10 books collected</p>
+        <p id="lib-count" style="font-size: 12px; margin-top: 2px;">9 books collected</p>
       </div>
       <button class="icon-btn" onclick="showToast('Search coming soon!')">
         <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
@@ -816,22 +776,20 @@ html, body {
 
   <!-- FOCUS PAGE -->
   <div class="page" id="page-focus">
-    <div class="scroll-area">
-      <div class="focus-page">
-        <div class="focus-title">Focus Timer</div>
-        <div class="focus-subtitle">Zen Sanctuary · Pomodoro Mode</div>
-        <div class="timer-circle" id="timer-display">25:00</div>
-        <div class="timer-controls">
-          <button class="circle-btn" onclick="resetTimer()">
-            <svg viewBox="0 0 24 24"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
-          </button>
-          <button class="circle-btn large" onclick="toggleTimer()">
-            <svg viewBox="0 0 24 24" id="play-icon"><path d="M8 5v14l11-7z"/></svg>
-          </button>
-          <button class="circle-btn" onclick="showToast('Session saved!')">
-            <svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
-          </button>
-        </div>
+    <div class="focus-page">
+      <div class="focus-title">Focus Timer</div>
+      <div class="focus-subtitle">Zen Sanctuary · Pomodoro Mode</div>
+      <div class="timer-circle" id="timer-display">25:00</div>
+      <div class="timer-controls">
+        <button class="circle-btn" onclick="resetTimer()">
+          <svg viewBox="0 0 24 24"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+        </button>
+        <button class="circle-btn large" onclick="toggleTimer()">
+          <svg viewBox="0 0 24 24" id="play-icon"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <button class="circle-btn" onclick="showToast('Session saved!')">
+          <svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+        </button>
       </div>
     </div>
   </div>
@@ -917,7 +875,7 @@ html, body {
           <div class="settings-group-title">READING</div>
           <div class="settings-card">
             <div class="settings-row">
-              <svg viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-3.5-6.2l-2.8 3.4h-.5v-3h-1v3h-3.5l2.8-3.4.7.7-1.9 2.3h2.4v-2.7h1v2.7h2.4l-1.9-2.3.7-.7z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
               <span class="sr-label">Daily Reading Reminders</span>
               <div class="toggle on" onclick="this.classList.toggle('on')"></div>
             </div>
@@ -968,7 +926,7 @@ html, body {
     </div>
   </div>
 
-  <!-- Bottom Navigation -->
+  <!-- Bottom Nav -->
   <nav class="bottom-nav">
     <button class="nav-item active" data-page="home" onclick="switchPage('home')">
       <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
@@ -995,7 +953,7 @@ html, body {
   <!-- Book Detail Modal -->
   <div class="modal-backdrop" id="book-modal" onclick="closeModal(event)">
     <div class="modal" onclick="event.stopPropagation()">
-      <div class="modal-cover" id="modal-cover" style="background: linear-gradient(135deg, #6B3410, #8B4513);"></div>
+      <div class="modal-cover" id="modal-cover"></div>
       <div class="modal-title" id="modal-title">Book Title</div>
       <div class="modal-author" id="modal-author">Author Name</div>
       <div class="modal-progress">
@@ -1015,34 +973,29 @@ html, body {
 <div class="toast" id="toast"></div>
 
 <script>
-// ============ DATA ============
 const books = [
-  { id: 'alchemist-path', title: "The Alchemist's Path", author: 'Paulo Coelho', status: 'reading', current: 142, total: 208, color: '#6B3410', height: 130 },
-  { id: 'dune', title: 'Dune', author: 'Frank Herbert', status: 'completed', current: 688, total: 688, color: '#2D1810', height: 130 },
-  { id: 'stormlight', title: 'Stormlight Archive', author: 'Brandon Sanderson', status: 'completed', current: 1200, total: 1200, color: '#4A2818', height: 138 },
-  { id: 'mindfulness', title: 'Mindfulness & Focus', author: 'Various', status: 'lent', color: '#5C3826', height: 122 },
-  { id: 'meditations', title: 'Meditations', author: 'Marcus Aurelius', status: 'reading', current: 89, total: 254, color: '#3A2418', height: 128 },
-  { id: 'power-now', title: 'The Power of Now', author: 'Eckhart Tolle', status: 'reading', current: 156, total: 236, color: '#6B4423', height: 132 },
-  { id: 'atomic', title: 'Atomic Habits', author: 'James Clear', status: 'completed', current: 320, total: 320, color: '#8B4513', height: 120 },
-  { id: 'deep-work', title: 'Deep Work', author: 'Cal Newport', status: 'reading', current: 178, total: 296, color: '#2D5A3D', height: 124 },
-  { id: 'sapiens', title: 'Sapiens', author: 'Yuval Noah Harari', status: 'completed', current: 440, total: 440, color: '#4A0E0E', height: 134 },
-  { id: 'alchemist', title: 'The Alchemist', author: 'Paulo Coelho', status: 'completed', current: 208, total: 208, color: '#D4A574', height: 118 },
+  { id: 'alchemist-path', title: "The Alchemist's Path", author: 'Paulo Coelho', status: 'reading', current: 142, total: 208, img: 'web/assets/b_alchemist.jpg' },
+  { id: 'dune', title: 'Dune', author: 'Frank Herbert', status: 'completed', current: 688, total: 688, img: 'web/assets/b_dune.jpg' },
+  { id: 'stormlight', title: 'Stormlight Archive', author: 'Brandon Sanderson', status: 'completed', current: 1200, total: 1200, img: 'web/assets/b_stormlight.jpg' },
+  { id: 'mindfulness', title: 'Mindfulness & Focus', author: 'Various', status: 'lent', img: 'web/assets/b_mindfulness.jpg' },
+  { id: 'meditations', title: 'Meditations', author: 'Marcus Aurelius', status: 'reading', current: 89, total: 254, img: 'web/assets/b_meditations.jpg' },
+  { id: 'power', title: 'The Power of Now', author: 'Eckhart Tolle', status: 'reading', current: 156, total: 236, img: 'web/assets/b_power.jpg' },
+  { id: 'atomic', title: 'Atomic Habits', author: 'James Clear', status: 'completed', current: 320, total: 320, img: 'web/assets/b_atomic.jpg' },
+  { id: 'deepwork', title: 'Deep Work', author: 'Cal Newport', status: 'reading', current: 178, total: 296, img: 'web/assets/b_deepwork.jpg' },
+  { id: 'sapiens', title: 'Sapiens', author: 'Yuval Noah Harari', status: 'completed', current: 440, total: 440, img: 'web/assets/b_sapiens.jpg' },
 ];
 
-// ============ NAVIGATION ============
 function switchPage(page) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   document.getElementById('page-' + page).classList.add('active');
   document.querySelector(`.nav-item[data-page="${page}"]`).classList.add('active');
-  document.getElementById('page-' + page).scrollTop = 0;
 }
 
-// ============ BOOK DETAIL MODAL ============
 function openBookDetail(id) {
   const book = books.find(b => b.id === id);
   if (!book) return;
-  document.getElementById('modal-cover').style.background = `linear-gradient(135deg, ${book.color}, ${adjustColor(book.color, 30)})`;
+  document.getElementById('modal-cover').innerHTML = `<img src="${book.img}" alt="${book.title}"/>`;
   document.getElementById('modal-title').textContent = book.title;
   document.getElementById('modal-author').textContent = book.author;
   if (book.total) {
@@ -1059,62 +1012,48 @@ function closeModal(e) {
   document.getElementById('book-modal').classList.remove('show');
 }
 
-// ============ SHELVES ============
 function buildShelves() {
-  const recent = books.filter(b => b.status === 'completed').slice(0, 8);
+  const recent = books.filter(b => b.status === 'completed');
   const lent = books.filter(b => b.status === 'lent');
 
   const recentEl = document.getElementById('shelf-recent');
   recentEl.innerHTML = recent.map(b => `
-    <div class="shelf-book" style="background: linear-gradient(135deg, ${b.color}, ${adjustColor(b.color, 30)}); height: ${b.height}px;" onclick="openBookDetail('${b.id}')">
-      <div class="book-label">${b.title.substring(0, 12)}</div>
+    <div class="shelf-book" style="height: 180px;" onclick="openBookDetail('${b.id}')">
+      <img src="${b.img}" alt="${b.title}"/>
     </div>
   `).join('');
 
   const lentEl = document.getElementById('shelf-lent');
   lentEl.innerHTML = lent.map(b => `
-    <div class="shelf-book" style="background: linear-gradient(135deg, ${b.color}, ${adjustColor(b.color, 30)}); height: ${b.height}px;" onclick="openBookDetail('${b.id}')">
-      <div class="book-label">${b.title.substring(0, 12)}</div>
+    <div class="shelf-book" style="height: 180px;" onclick="openBookDetail('${b.id}')">
+      <img src="${b.img}" alt="${b.title}"/>
     </div>
   `).join('');
 
-  // Library grid
   const libGrid = document.getElementById('lib-grid');
   libGrid.innerHTML = books.map(b => `
-    <div class="lib-book" style="background: linear-gradient(135deg, ${b.color}, ${adjustColor(b.color, 30)});" onclick="openBookDetail('${b.id}')">
-      <div class="b-title">${b.title}</div>
-      <div class="b-author">${b.author}</div>
+    <div class="lib-book" onclick="openBookDetail('${b.id}')">
+      <img src="${b.img}" alt="${b.title}"/>
+      <div class="lib-info">
+        <div class="b-title">${b.title}</div>
+        <div class="b-author">${b.author}</div>
+      </div>
     </div>
   `).join('');
 }
 
-function adjustColor(hex, amount) {
-  let c = hex.replace('#', '');
-  let r = parseInt(c.substring(0,2), 16);
-  let g = parseInt(c.substring(2,4), 16);
-  let b = parseInt(c.substring(4,6), 16);
-  r = Math.min(255, r + amount);
-  g = Math.min(255, g + amount);
-  b = Math.min(255, b + amount);
-  return '#' + [r, g, b].map(x => x.toString(16).padStart(2, '0')).join('');
-}
-
-// ============ FILTER ============
 function setFilter(filter, el) {
   document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
   el.classList.add('active');
   showToast(filter === 'all' ? 'Showing all books' : 'Showing lent books');
 }
 
-// ============ FOCUS TIMER ============
 let timerSeconds = 25 * 60;
 let timerInterval = null;
 let timerRunning = false;
 
 function formatTime(s) {
-  const m = Math.floor(s / 60).toString().padStart(2, '0');
-  const sec = (s % 60).toString().padStart(2, '0');
-  return `${m}:${sec}`;
+  return `${Math.floor(s / 60).toString().padStart(2, '0')}:${(s % 60).toString().padStart(2, '0')}`;
 }
 
 function toggleTimer() {
@@ -1149,7 +1088,6 @@ function resetTimer() {
   showToast('Timer reset');
 }
 
-// ============ TOAST ============
 function showToast(msg) {
   const toast = document.getElementById('toast');
   toast.textContent = msg;
@@ -1157,11 +1095,9 @@ function showToast(msg) {
   setTimeout(() => toast.classList.remove('show'), 2500);
 }
 
-// ============ INIT ============
 buildShelves();
 document.getElementById('timer-display').textContent = formatTime(timerSeconds);
 
-// Keyboard navigation for testing
 document.addEventListener('keydown', (e) => {
   const pages = ['home', 'library', 'focus', 'profile', 'settings'];
   const current = document.querySelector('.nav-item.active').dataset.page;
